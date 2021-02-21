@@ -29,7 +29,7 @@ public class UserService implements IUserService {
         User user = userOptional.get();
 
         UserDto userDto = UserDto.builder()
-                .userName(user.getUserName())
+                .userName(user.getUsername())
                 .build();
 
         return userDto;
