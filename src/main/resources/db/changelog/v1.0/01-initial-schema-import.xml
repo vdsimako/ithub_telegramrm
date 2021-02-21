@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="initial-schema-import" author="vdsimako">
+        <createTable tableName="subscriber">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_subscriber_id" nullable="false"/>
+            </column>
+            <column name="msisdn" type="varchar(11)">
+                <constraints checkConstraint="true" notNullConstraintName="nn_subscriber_msisdn" nullable="false"/>
+             </column>
+            <column name="first_name" type="text"/>
+            <column name="last_name" type="text"/>
+            <column name="patronymic" type="text"/>
+            <column name="is_service_allowed" type="boolean">
+                <constraints checkConstraint="true" notNullConstraintName="nn_subscriber_is_service_allowed" nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="telegram">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_telegram_id" nullable="false"/>
+            </column>
+            <column name="address" type="jsonb"/>
+            <column name="telegram" type="jsonb"/>
+            <column name="sender" type="jsonb"/>
+        </createTable>
+
+        <createTable tableName="user">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_user_id" nullable="false"/>
+            </column>
+            <column name="user_name" type="text">
+                <constraints checkConstraint="true" notNullConstraintName="nn_user_user_name" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
